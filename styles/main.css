@@ -1,0 +1,141 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+/* 
+Authors- Mandip Bhadra and Ifeoluwapo Adetunji 
+*/
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+.navbar {
+    background-color: #17252A;
+    color: #FEFFFF;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.header > li > a {
+    color: #FEFFFF;
+    padding: 10px;
+}
+
+body {
+    background-color: #c8d6e5;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px #2B7A78;
+    padding: 70px 0;
+    text-align: center;
+}
+
+.sign {
+    background-color: #01a3a4;
+    color: #17252A;
+    outline: 10px #17252A;
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.button-sec {
+    padding-top: 5%;
+}
+.sign:hover {
+    background-color: #2B7A78;
+    outline-color: white;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+.navtext {
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+.navtext:hover {
+    color: #2e86de;
+    -o-transition: all .6s ease-in-out;
+    -webkit-transition: all .6s ease-in-out;
+    transition: all .6s ease-in-out;
+}
+
+.opt {
+    background-color: #01a3a4;
+    color: #17252A;
+    outline: 10px #17252A;
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.opt:hover {
+    background-color: #2B7A78;
+    outline-color: white;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+form-group {
+
+}
+
+label{
+    display: block;
+    text-align: center;
+}
+
+.select {
+    margin-top:50px;
+    text-align: center;
+}
+
+.leaderboard{
+    margin-top:12.5px;
+    text-align: center;
+}
+
+.board{
+     margin-top:10px;
+}
+
+.custom {
+    width: 150px;
+    text-align: center;
+}
+
+.artist{
+    padding-left: 5px;
+}
+
+@media only screen and (max-width: 496px) {
+    [class*="container-fluid"] {
+        width: 80%;
+    }
+}
+@media only screen and (min-width: 496px) {
+    [class*="container-fluid"] {
+        width: 45%;
+    }
+}
