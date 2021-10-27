@@ -31,6 +31,9 @@
             <a href="selectscreen.html">Select</a>
         </li>
         <li>
+            <a href="<?=$this->url?>changename/">Change Name</a>
+        </li>
+        <li>
             <a href="<?=$this->url?>logout/">Log Out</a>
         </li>
     </ul>

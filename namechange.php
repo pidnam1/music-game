@@ -7,7 +7,7 @@
         <meta name="author" content="your name">
         <meta name="description" content="include some description about your page">
 
-        <title>Trivia Game Login</title>
+        <title>Trivia Game Change Name</title>
     <style>
   <?php include "styles/main.css" ?>
 </style>
@@ -19,8 +19,8 @@
 
         <div class="container" style="margin-top: 15px;">
             <div class="row col-xs-8">
-                <h1>Music Game-Log In</h1>
-                <p> Welcome to music game!  To get started, login below or enter a new username and password to create an account</p>
+                <h1>Music Game Name Change</h1>
+                <p> You can change your name here! </p>
             </div>
             <div class="row justify-content-center">
                 <div class="col-4">
@@ -29,20 +29,14 @@
                         echo "<div class='alert alert-danger'>$error_msg</div>";
                     }
                 ?>
-                <form action="<?=$this->url?>login/" method="post">
+                <form action="<?=$this->url?>changename/" method="post">
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email"/>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password"/>
-                    </div>
-
-                    <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                    </div>
+                        <label for="name" class="form-label">New Name</label>
+                        <input type="name" class="form-control" id="name" name="name"/>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Change Name</button>
+                </div>
 
                 </form>
                 </div>

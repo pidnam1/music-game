@@ -23,7 +23,6 @@ $parts = explode("/", $path);
 
 
 
-
 // Instantiate the controller and run
 $game = new GameController();
 $game->run($parts[0]);

@@ -23,6 +23,7 @@ class GameController {
                 $this->sign_up();
                 break;
             case "logout":
+                setcookie("users", "", time() - 3600, '/');
                 $this->destroySession();
                 break;
             case "login":
@@ -30,6 +31,9 @@ class GameController {
                 break;
             case "leaderboard":
                 $this->leaderboard();
+                break;
+            case "changename":
+                $this->changename();
                 break;
             default:
                 $this->home();
@@ -40,10 +44,24 @@ class GameController {
 
     private function destroySession() {
         session_destroy();
-
         session_start();
         header("Location: {$this->url}home/");
         return;
+    }
+
+    public function changename() {
+        if(isset($_POST["name"])) {
+            $_SESSION["name"] = $_POST["name"];
+            $change = $this -> db -> query("update user set name = ? where email = ?;", "ss", $_POST["name"], $_SESSION["email"]);
+            if($change === false) {
+                $error_msg = "Error changing name";
+            }
+            $cookie_name = $_POST["name"];
+            setcookie('name', $cookie_name, time() + 3600, '/');
+            header("Location: {$this->url}select/");
+            return;
+        }
+        include "namechange.php";
     }
 
     public function login() {
@@ -59,6 +77,10 @@ class GameController {
                 if (password_verify($_POST["password"], $data[0]["password"])) {
                     $_SESSION["name"] = $data[0]["name"];
                     $_SESSION["email"] = $data[0]["email"];
+                    $_SESSION["age"] = 0;
+                    $login_cookie = "users";
+                    $login_value = $data[0]["name"];
+                    setcookie($login_cookie, $login_value, time() + 3600);
                     header("Location: {$this->url}select/");
                     return;
                 } else {
@@ -86,9 +108,13 @@ class GameController {
 
     public function home(){
 
-
     include "homepage.php";
 
+    if(isset($_COOKIE["users"])) {
+        header("Location: {$this->url}select/");
+        return;
+    }
+    
     }
 
     public function sign_up(){
@@ -116,6 +142,9 @@ class GameController {
                 $_SESSION["name"] = $_POST["name"];
                 $_SESSION["email"] = $_POST["email"];
                 $_SESSION["age"] = 0;
+                $login_cookie = "users";
+                $login_value = $_SESSION["name"];
+                setcookie($login_cookie, $login_value, time() + 3600);
                 header("Location: {$this->url}select/");
                 return;
                 }}
