@@ -8,7 +8,7 @@ class Database {
         ///include('../database_connection.php'); // where the script starts
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Extra Error Printing
         //$this->mysqli = new mysqli($dbserver, $dbuser, $dbpass, $dbdatabase);
-        $this->mysqli = new mysqli("localhost", "root", "", "music_game"); // XAMPP
+        $this->mysqli = new mysqli("localhost", "iaa8xt", "FRwv8Yq2ZqNX", "iaa8xt"); // XAMPP
     }
 
     public function query($query, $bparam = null, ...$params) {
