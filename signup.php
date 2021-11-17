@@ -29,7 +29,7 @@
                         echo "<div class='alert alert-danger'>$error_msg</div>";
                     }
                 ?>
-                <form action="<?=$this->url?>sign_up/" method="post">
+                <form action="/mrb7bb/musicgame/signing_up/" method="post" onsubmit="return validates();">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email"/>
@@ -52,5 +52,25 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+        function validates(){
+    let name=  document.getElementById("name");
+    name = name.value;
+
+    console.log(name);
+    let password=  document.getElementById("password");
+    password = password.value;
+
+    console.log(password);
+
+    if (name === "" || password === "") {
+    alert("Please fill in all input");
+    return false;
+    }
+    else{
+    return true;
+    }
+    }
+    </script>
     </body>
 </html>

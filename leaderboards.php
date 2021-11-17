@@ -26,7 +26,7 @@
             <a href="leaderboard.html">Leaderboards</a>
         </li>
         <li>
-            <a href="selectscreen.html">Select</a>
+            <a href="<?=$this->url?>select/">Select</a>
         </li>
     </ul>
 </nav>
@@ -36,7 +36,7 @@
     </div>
 <div class = "row leaderboard">
 <div class = "d-flex justify-content-center">
-<form action="<?=$this->url?>leaderboard/" method="post">
+<form action="<?=$this->url?>show_leaderboard/" method="post">
   <div class="form-group justify-content-center">
     <label for="exampleInputEmail1">Search</label>
     <input type="artist" class="form-control" id="artist" name = "artist" aria-describedby="emailHelp" placeholder="Enter artist">
@@ -47,9 +47,9 @@
                     }
                 ?>
   </div>
-  <button type="submit" class="btn btn-primary">Search</button>
+<button type="submit" class="btn btn-primary" id="search" disabled="true">Search</button>
 
-    </form>
+      </form>
     </div>
     </div>
 
@@ -86,5 +86,15 @@
     </div>
 
 
+      <script type="text/javascript">
+        var artform = document.getElementById("artist");
+        if (artform) {
+          artform.addEventListener('input', buttonOn);
+        }
+
+        function buttonOn() {
+          document.getElementById("search").disabled = false;
+        }
+      </script>
 </body>
 </html>

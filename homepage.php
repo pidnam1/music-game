@@ -25,10 +25,10 @@
             <h1>How Well Do You Know Your Artist?</h1>
         </header>
         <section class="button-sec">
-            <button type="button" class="btn-lg btn-dark sign" onclick="document.location='<?=$this->url?>login/'">Sign In</button>
+            <button type="button" class="btn-lg btn-dark sign" onclick="document.location='<?=$this->url?>logging_in/'">Sign In</button>
         </section>
         <section class = "button-sec">
-            <button type="button" class="btn-lg btn-dark sign" onclick="document.location='<?=$this->url?>sign_up/'">Register</button>
+            <button type="button" class="btn-lg btn-dark sign" onclick="document.location='<?=$this->url?>signing_up/'">Register</button>
         </section>
     </div>
 </body>

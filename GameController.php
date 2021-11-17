@@ -4,7 +4,8 @@ class GameController {
 
     private $db;
 
-    private $url = "/musicgame/";
+    private $url = "/mrb7bb/musicgame/";
+    //private $url = "/musicgame/";
 
     public function __construct() {
         $this->db = new Database();
@@ -19,21 +20,27 @@ class GameController {
             case "home":
                 $this->home();
                 break;
-            case "sign_up":
-                $this->sign_up();
+            case "signing_up":
+                $this->signing_up();
                 break;
             case "logout":
                 setcookie("users", "", time() - 3600, '/');
                 $this->destroySession();
                 break;
-            case "login":
-                $this->login();
+            case "logging_in":
+                $this->logging_in();
                 break;
-            case "leaderboard":
-                $this->leaderboard();
+            case "show_leaderboard":
+                $this->show_leaderboard();
                 break;
             case "changename":
                 $this->changename();
+                break;
+            case "get_user_info":
+                $this->get_user_info();
+                break;
+            case "show_game":
+                $this->show_game();
                 break;
             default:
                 $this->home();
@@ -52,7 +59,7 @@ class GameController {
     public function changename() {
         if(isset($_POST["name"])) {
             $_SESSION["name"] = $_POST["name"];
-            $change = $this -> db -> query("update user set name = ? where email = ?;", "ss", $_POST["name"], $_SESSION["email"]);
+            $change = $this -> db -> query("update user set name = ?, fav_artist = ? where email = ?;", "sss", $_POST["name"], $_POST["fav_artist"], $_SESSION["email"]);
             if($change === false) {
                 $error_msg = "Error changing name";
             }
@@ -64,7 +71,7 @@ class GameController {
         include "namechange.php";
     }
 
-    public function login() {
+    public function logging_in() {
         // our login code from index.php last time!
         $error_msg = "";
         if (isset($_POST["email"])) { /// validate the email coming in
@@ -106,6 +113,16 @@ class GameController {
         include "selectscreen.php";
     }
 
+    public function get_user_info(){
+    $data = $this -> db->query("select name, fav_artist from user where email = ?;", "s", $_SESSION["email"]);
+    // Return JSON only
+
+        $user_info = $data[0];
+        header("Content-type: application/json");
+        echo json_encode($user_info, JSON_PRETTY_PRINT);
+
+    }
+
     public function home(){
 
     include "homepage.php";
@@ -117,7 +134,7 @@ class GameController {
     
     }
 
-    public function sign_up(){
+    public function signing_up(){
     $error_msg = "";
         if (isset($_POST["email"])) { /// validate the email coming in
             $data = $this->db->query("select * from user where email = ?;", "s", $_POST["email"]);
@@ -149,10 +166,10 @@ class GameController {
                 return;
                 }}
                 }}
-        include "sign_up.php";
+        include "signup.php";
     }
 
-    public function leaderboard(){
+    public function show_leaderboard(){
          $error_msg = "";
          $artist = "Choose an Artist to See Their Leaderboard";
          $leaderboard = [];
@@ -174,8 +191,13 @@ class GameController {
          }
          }
 
-    include "leaderboard.php";
+    include "leaderboards.php";
 
+    }
+
+    function show_game(){
+
+    include "gamescreen.php";
     }
 
 
