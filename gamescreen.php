@@ -104,9 +104,15 @@
                 }
                 var sansend = formatParams(san);
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", /musicgame/show_game, true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(sansend);
+                xhr.open("POST", "/musicgame/show_game/", true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState === 4 && xhr.status === 200) {
+                        var res = JSON.parse(xhr.respons);
+                        console.log(res);
+                    }
+                };
+                xhr.send(JSON.stringify(san));
             }
         </script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
