@@ -4,8 +4,8 @@ class GameController {
 
     private $db;
 
-    private $url = "/mrb7bb/musicgame/";
-    //private $url = "/musicgame/";
+    //private $url = "/mrb7bb/musicgame/";
+    private $url = "/musicgame/";
 
     public function __construct() {
         $this->db = new Database();
@@ -196,7 +196,14 @@ class GameController {
     }
 
     function show_game(){
-
+    if (isset($_POST["score"])) {
+        // $data = $this->db->query("with cte as (
+        //     select *
+        //     from t
+        //     where artist = ?
+        // ) 
+        // cte = JSON_MODIFY(")
+    }
     include "gamescreen.php";
     }
 
