@@ -89,13 +89,24 @@
                     endTime;
                 }
             }
+            function formatParams(params) {
+                return Object.keys(params).map(function(key){
+                    return key+"="+encodeURIComponent(params[key])
+                })
+                .join("&")
+            }
 
             function endTime() {
                 clearInterval(interval);
+                var san = {
+                    score: finalScore,
+                    artist: a,
+                }
+                var sansend = formatParams(san);
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", /musicgame/show_game, true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(score = finalScore);
+                xhr.send(sansend);
             }
         </script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

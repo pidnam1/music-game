@@ -197,12 +197,28 @@ class GameController {
 
     function show_game(){
     if (isset($_POST["score"])) {
-        // $data = $this->db->query("with cte as (
-        //     select *
-        //     from t
-        //     where artist = ?
-        // ) 
-        // cte = JSON_MODIFY(")
+        $data = $this->db->query("select * from leaderboard where artist = ?;", "s", $_POST["artist"]);
+        if($data === false) {
+            $arr = array($_SESSION["name"] => $_POST["score"]);
+            $js = json_encode($arr);
+            $base = $this->db->query("insert into leaderboard (artist, leaderboard) values (?, ?)", "ss", $_POST["artist"], $js);
+            if($base === false) {
+                $error_msg = "Error creating artist leaderboard";
+            }
+        }
+        elseif(!empty($data)) {
+            $js = json_decode($data[0]["leaderboard"]);
+            $arr =array($_SESSION["name"] => $_POST["score"]);
+            array_push($js, $arr);
+            $json = json_encode($js);
+            $base = $this->db->query("update leaderboard set leaderboard = ? where artist = ?", $json, $_POST["artist"]);
+            if($base === false){
+                $error_msg = "Error updating leaderboard";
+            }
+        }
+        else {
+            $error_msg = "Error fetching leaderboard data";
+        }
     }
     include "gamescreen.php";
     }
