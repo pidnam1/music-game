@@ -83,7 +83,8 @@
 
     //send them to next page
     localStorage.setItem("artist", artist);
-    window.location.href = 'https://cs4640.cs.virginia.edu/mrb7bb/musicgame/show_game';
+    //window.location.href = 'https://cs4640.cs.virginia.edu/mrb7bb/musicgame/show_game';
+    window.location.href = 'https://192.168.64.2/musicgame/show_game';
     }
 
 
@@ -92,7 +93,8 @@
     // instantiate the object
             var ajax = new XMLHttpRequest();
             // open the request
-            ajax.open("GET", "https://cs4640.cs.virginia.edu/mrb7bb/musicgame/get_user_info/", true);
+            //ajax.open("GET", "https://cs4640.cs.virginia.edu/mrb7bb/musicgame/get_user_info/", true);
+            ajax.open("GET", "https://192.168.64.2/musicgame/get_user_info/", true);
             // ask for a specific response
             ajax.responseType = "json";
             // send the request
@@ -118,8 +120,12 @@
     }
 
     function displayInfo(userInfo) {
+    let fav_artist = "";
+    if (userInfo.fav_artist !== null){
+        fav_artist = userInfo.fav_artist;
+    }
     document.getElementById("welcome").innerHTML = "Hello " + userInfo.name;
-    document.getElementById("fav_artist").innerHTML = "Favorite Artist: " + userInfo.fav_artist;
+    document.getElementById("fav_artist").innerHTML = "Favorite Artist: " + fav_artist;
 
 
     }

@@ -11,8 +11,8 @@ session_start();
 
 // Parse the URL
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-$path = str_replace("/mrb7bb/musicgame/", "", $path);
-//$path = str_replace("/musicgame/", "", $path);
+//$path = str_replace("/mrb7bb/musicgame/", "", $path);
+$path = str_replace("/musicgame/", "", $path);
 $parts = explode("/", $path);
 
 

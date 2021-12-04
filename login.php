@@ -11,7 +11,7 @@
     <style>
   <?php include "styles/main.css" ?>
 </style>
-        
+       
     </head>
 
     <body>
@@ -29,8 +29,8 @@
                         echo "<div class='alert alert-danger'>$error_msg</div>";
                     }
                 ?>
-               <form action="/mrb7bb/musicgame/logging_in/" method="post">
-                <!-- <form action="/musicgame/logging_in/" method="post"> -->
+              <!--  <form action="/mrb7bb/musicgame/logging_in/" method="post"> -->
+                 <form action="/musicgame/logging_in/" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email"/>

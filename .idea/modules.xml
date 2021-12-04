@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$USER_HOME$/.bitnami/stackman/machines/xampp/volumes/root/htdocs/hw5/.idea/hw5.iml" filepath="$USER_HOME$/.bitnami/stackman/machines/xampp/volumes/root/htdocs/hw5/.idea/hw5.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/musicgame.iml" filepath="$PROJECT_DIR$/.idea/musicgame.iml" />
+      <module fileurl="file://$USER_HOME$/.bitnami/stackman/machines/xampp/volumes/root/htdocs/musicgame/.idea/musicgame.iml" filepath="$USER_HOME$/.bitnami/stackman/machines/xampp/volumes/root/htdocs/musicgame/.idea/musicgame.iml" />
     </modules>
   </component>
 </project>
