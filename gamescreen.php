@@ -10,6 +10,12 @@
     <meta name="author" content="define author of the page -- your name">
     <meta name="description" content="define a description of this page">
     <meta name="keywords" content="define keywords for search engines">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="calldeezer.js"></script>
+
+    <head>
+        <script src="jquery-3.5.1.min.js"></script>
+    </head>
 </head>
 
 <body>
@@ -41,19 +47,19 @@
                 <img id="album_cover" src="">
             </section>
             <section>
-                    <button type="button" id="b1"  class="btn-dark opt"></button>
-                    <button type="button" id="b2"  class=" btn-dark opt"></button>
-                    <button type="button" id="b3" class="btn-dark opt"></button>
-                    <button type="button" id="b4" class=" btn-dark opt"></button>
-                
+                <button type="button" id="b1" class="btn-dark opt"></button>
+                <button type="button" id="b2" class=" btn-dark opt"></button>
+                <button type="button" id="b3" class="btn-dark opt"></button>
+                <button type="button" id="b4" class=" btn-dark opt"></button>
+
             </section>
         </div>
-        <script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
+        <script type='text/javascript' src='https://code.jquery.com/jquery.min.js'></script>
         <script type="text/javascript">
             let answer = -1;
             let correctlyAnswered = 0;
             let a = localStorage.getItem("artist");
-            console.log(a);
+            //console.log(a);
             var minutesLabel = document.getElementById("minutes");
             var secondsLabel = document.getElementById("seconds");
             var totalSeconds = 0;
@@ -61,18 +67,18 @@
             var finalScore = 0;
             var interval = setInterval(setTime, 1000);
             $("button").click(function() {
-    //alert(this.id); // or alert($(this).attr('id'));
-    console.log("clicked", this.id);
-    console.log("answer", "b" + answer.toString());
-    if(this.id === "b" + answer.toString()) {
-        rightAnswer();
-    }else{
-        timeInc(5);
-    }
-    loadQuestion();
-});
+                //alert(this.id); // or alert($(this).attr('id'));
+                console.log("clicked", this.id);
+                console.log("answer", "b" + answer.toString());
+                if (this.id === "b" + answer.toString()) {
+                    rightAnswer();
+                } else {
+                    timeInc(5);
+                }
+                loadQuestion();
+            });
 
-            
+
             function setTime() {
                 ++totalSeconds;
                 secondsLabel.innerHTML = pad(totalSeconds % 60);
@@ -108,40 +114,28 @@
                     promptEnding(correctlyAnswered, finalScore);
                 }
             }
-            function promptEnding(correctlyAnswered, finalScore){
+
+            function promptEnding(correctlyAnswered, finalScore) {
                 alert("Congrats! You answered " + correctlyAnswered + " questions correctly, and got a final time of " + finalScore + " seconds!");
                 endTime();
             }
+
             function formatParams(params) {
-                return Object.keys(params).map(function(key){
-                    return key+"="+encodeURIComponent(params[key])
-                })
-                .join("&")
+                return Object.keys(params).map(function(key) {
+                        return key + "=" + encodeURIComponent(params[key])
+                    })
+                    .join("&")
             }
 
             function endTime() {
                 console.log("in end time");
                 clearInterval(interval);
-                var san = {
-                    score: finalScore,
-                    artist: a,
-                }
-                var sansend = formatParams(san);
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "https://192.168.64.2/musicgame/show_game/", true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.onreadystatechange = function() {
-                    if(xhr.readyState === 4 && xhr.status === 200) {
-                        alert(xhr.responseText);
-                    }
-                };
-                xhr.send(JSON.stringify(san));
-                window.location.href = 'https://192.168.64.2/musicgame/show_leaderboard';
+                var url = 'show_game/';
+                $.post(url, {'artist': a, 'score': totalSeconds});
+                window.location.href = 'http://localhost/musicgame/show_leaderboard';
             }
-        
         </script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script type="text/javascript" src="calldeezer.js"></script>
+
 
 </body>
 

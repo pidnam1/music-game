@@ -196,7 +196,7 @@ class GameController {
     }
 
     function show_game(){
-        
+        $error_msg = ""; 
         if (isset($_POST["score"])) {
             $data = $this->db->query("select * from leaderboard where artist = ?;", "s", $_POST["artist"]);
             if($data === false) {
@@ -223,6 +223,4 @@ class GameController {
         }
         include "gamescreen.php";
         }
-
-
     }
